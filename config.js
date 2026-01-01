@@ -47,12 +47,12 @@ module.exports = {
 	API: "https://api-aswin-sparky.koyeb.app",
 	AUDIO_DATA: process.env.AUDIO_DATA || "AURA;SABARIYY;https://magnetic-tan-znlcjhciry.edgeone.app/886457325fb7d89a568195ee83cecdb5.jpg",
 	AUTO_STATUS_VIEW: toBool(process.env.AUTO_STATUS_VIEW || "true"),
-	BOT_INFO: process.env.BOT_INFO || "X-BOT-MD;ASWIN SPARKY;https://url.sparky.biz.id/5ftLiA.jpg",
+	BOT_INFO: process.env.BOT_INFO || "AURA;SABARIYY;https://magnetic-tan-znlcjhciry.edgeone.app/886457325fb7d89a568195ee83cecdb5.jpg",
 	CALL_BLOCK: toBool(process.env.CALL_BLOCK || "false"),
 	CALL_BLOCK_MSG: process.env.CALL_BLOCK_MSG || "_Calls are not allowed. Please don’t call again!._",
 	DATABASE_URL,
 	DATABASE,
-	DISABLE_PM: toBool(process.env.DISABLE_PM || "true"),
+	DISABLE_PM: toBool(process.env.DISABLE_PM || "false"),
 	HANDLERS: (process.env.HANDLERS || process.env.HANDLER || process.env.PREFIX || ".").trim(),
 	HEROKU_API_KEY: process.env.HEROKU_API_KEY || "",
 	HEROKU_APP_NAME: process.env.HEROKU_APP_NAME || "",
@@ -65,7 +65,7 @@ module.exports = {
 	MENU_TYPE: process.env.MENU_TYPE || "image", // Menu style: big, small, image, document, text, call, payment
 	MENU_FONT: process.env.MENU_FONT || "tiny", // randomStyle, strikeThrough, wingdings, vaporwave, typewriter, analucia, tildeStrikeThrough, underline, doubleUnderline, slashThrough, sparrow, heartsBetween, arrowBelow, crossAboveBelow, creepify, bubbles, mirror, squares, roundsquares, flip, tiny, createMap, serif_I, manga, ladybug, runes, serif_B, serif_BI, serif_I, fancy1, fancy2, fancy3, fancy4, fancy5, fancy6, fancy7, fancy8, fancy9, fancy10, fancy11, fancy12, fancy13, fancy14, fancy15, fancy16, fancy17, fancy18, fancy19, fancy20, fancy21, fancy22, fancy23, fancy24, fancy25, fancy26, fancy27, fancy28, fancy29, fancy30, fancy31, fancy32, fancy33
 	PORT: process.env.PORT || 8080,
-	PING: process.env.PING || "𝐋𝐚𝐭𝐞𝐧𝐜𝐲",
+	PING: process.env.PING || "🎀 ʟᴀᴛᴇɴᴄʏ",
 	PM_BLOCK: toBool(process.env.PM_BLOCK || "false"),
 	READ_MESSAGES: toBool(process.env.READ_MESSAGES || "false"),
 	REJECT_CALL: toBool(process.env.REJECT_CALL || "false"),
