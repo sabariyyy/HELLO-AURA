@@ -141,3 +141,39 @@ m.sendMsg(m.jid , `_@${m.sender.split("@")[0]}_`  , {   mentions : [m.sender]} )
                     console.log(e)
                 }
             });
+Sparky(
+    {
+        name: "qr",
+        fromMe: true,
+        desc: "Generate UPI QR code for payment",
+        category: "sudo",
+    },
+    async ({client, m, args}) => {
+        try {
+            /////////////////////
+            if (!args) return await m.reply('_Need amount!*\n*Example: qr 100*');
+            
+            // Validate amount (decimal supported)
+            const amount = parseFloat(args);
+            if (isNaN(amount) || amount <= 0) {
+                return await m.reply('_Please enter a valid amount (decimal supported)_');
+            }
+            
+            // Generate QR URL
+            const qrUrl = `https://sabari-qr-api.vercel.app/api/upi-qr?amount=${amount}`;
+            
+            // Send QR image with caption
+            const caption = `*Amount has to payable : ₹${amount}*`;
+            
+            await client.sendMessage(m.jid, {
+                image: { url: qrUrl },
+                caption: caption
+            }, { quoted: m });
+            
+            //////////////////////
+        } catch (e) {
+            console.log(e);
+            await m.reply('_Error generating QR code_');
+        }
+    }
+);
