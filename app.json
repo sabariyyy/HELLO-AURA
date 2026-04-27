@@ -36,7 +36,7 @@
     "BOT_INFO": {
       "description": "Customize bot menu information (Format: BotName;OwnerName;ImageURL).",
       "required": false,
-      "value": "X-BOT-MD;ASWIN SPARKY;https://url.sparky.biz.id/5ftLiA.jpg"
+      "value": "X-BOT-MD;ASWIN SPARKY;https://url.aswinsparky.qzz.io/sparky.jpg"
     },
     "ALWAYS_ONLINE": {
       "description": "Set to 'true' to keep bot always online, or 'false' to stay offline until a message is received.",

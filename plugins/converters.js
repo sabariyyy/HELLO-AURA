@@ -231,3 +231,94 @@ Sparky(
 	
 			}
 		});
+
+Sparky(
+  {
+    name: "doc",
+    fromMe: isPublic,
+    category: "converters",
+    desc: "Convert replied media to document",
+  },
+  async ({ m, client, args }) => {
+    try {
+      if (
+        !m.quoted ||
+        !(
+          m.quoted.message.imageMessage ||
+          m.quoted.message.videoMessage ||
+          m.quoted.message.audioMessage ||
+          m.quoted.message.documentMessage ||
+          m.quoted.message.stickerMessage
+        )
+      ) {
+        return await m.reply("_Replay to a meadia_");
+      }
+      await m.react("⏳");
+      const buffer = await m.quoted.download();
+      const mimetype =
+        m.quoted.message.imageMessage?.mimetype ||
+        m.quoted.message.videoMessage?.mimetype ||
+        m.quoted.message.audioMessage?.mimetype ||
+        m.quoted.message.documentMessage?.mimetype ||
+        "application/octet-stream";
+
+      let filename = args || "file";
+
+      if (!filename.includes(".")) {
+        const ext = mimetype.split("/")[1] || "bin";
+        filename += `.${ext}`;
+      }
+
+      await client.sendMessage(
+        m.jid,
+        {
+          document: buffer,
+          mimetype,
+          fileName: filename,
+        },
+        { quoted: m }
+      );
+
+      await m.react("✅");
+
+    } catch (err) {
+      console.log(err);
+      await m.react("❌");
+      m.reply("Error converting media 😅");
+    }
+  }
+);
+Sparky(
+  {
+    name: "nondoc",
+    fromMe: isPublic,
+    category: "converters",
+    desc: "Return document back to original media",
+  },
+  async ({ m, client }) => {
+    try {
+      const quoted = m.quoted;
+      if (!quoted || !quoted.message?.documentMessage)
+        return m.reply("_Reply to a document message_");
+      const mime = quoted.message.documentMessage.mimetype;
+	  await m.react("⏳");
+      const buffer = await quoted.download();
+      let type = "document";
+      if (mime.startsWith("image")) type = "image";
+      else if (mime.startsWith("video")) type = "video";
+      else if (mime.startsWith("audio")) type = "audio";
+      await m.sendMsg(
+        m.jid,
+        buffer,
+        { mimetype: mime, quoted: m },
+        type
+      );
+	  await m.react("✅");
+
+    } catch (err) {
+      console.log(err);
+	  await m.react("❌");
+      m.reply("Error restoring media 😅");
+    }
+  }
+);

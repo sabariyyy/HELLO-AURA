@@ -1,6 +1,6 @@
 {
   "name": "X-BOT-MD",
-  "version": "3.5.5",
+  "version": "3.7.0",
   "description": "X-BOT-MD is a powerful WhatsApp Helper Bot packed with features like media handling, automation, and more.",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@viper-x/fancytext": "^1.0.2",
-    "baileys": "^7.0.0-rc.6",
+    "baileys": "latest",
     "axios": "^1.7.9",
     "browser-id3-writer": "^4.4.0",
     "cheerio": "^1.0.0",
@@ -31,12 +31,12 @@
     "node-cache": "^5.1.2",
     "node-fetch": "^2.6.0",
     "node-webpmux": "^3.2.0",
+    "pdfkit": "^0.18.0",
     "pg": "^8.13.1",
     "pino": "^8.15.6",
     "pm2": "^5.3.0",
     "qs": "latest",
     "sequelize": "^6.23.0",
-    "simple-git": "^3.27.0",
-    "sqlite3": "^5.1.6"
+    "simple-git": "^3.27.0"
   }
 }

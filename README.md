@@ -1,5 +1,4 @@
-# X--BOT--MD (Beta) for testers
-## This version of x bot is only for testers to test
+# X BOT MD 3.6.0
 
 ## Join for updates 
 <p align="center">
@@ -82,9 +81,7 @@
 <summary>Read More</summary>
 
 <br>
-Beta testers
+Beta tester & Debug
 
-
-
-* [`RUSH MASTER`](https://github.com/RUSH-MASTER)
+* [`THEJUS`](https://github.com/jarviss4334)
  </details>

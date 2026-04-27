@@ -1,4 +1,4 @@
-const { Sparky, isPublic, spdl } = require("../lib");
+const { Sparky, isPublic, spdl, askGroq, addMessage, getMessages } = require("../lib");
 const { getJson, extractUrlsFromText, getString, isUrl } = require("./pluginsCore");
 const axios = require('axios');
 const fetch = require('node-fetch');
@@ -35,65 +35,42 @@ Sparky(
 );
 
 Sparky({
-    name: "gpt",
-    fromMe: true,
+    name: "sparky",
+    fromMe: isPublic,
     category: "misc",
-    desc: "Query GPT-3 with a prompt"
+    desc: "AI chat with memory"
 },
-async ({ m, client, args }) => {
-    // Get arguments either from command or quoted message
+async ({ m, args }) => {
+    if(!config.GROQ_API_KEY) return m.reply("_Please provide a grok api key_");
     args = args || m.quoted?.text;
-    
-    // Check if prompt exists
-    if (!args) return await m.reply("Please provide a prompt or quote a message");
-    
+    if (!args) return m.reply("_Hi this is Sparky Your Ai. Assistant How can i help you?_");
+
     try {
-        // Make API request
-        const q = await getJson(`${config.API}/api/search/gpt3?search=${encodeURIComponent(args)}`);
-        
-        // Check if response is valid
-        if (!q?.data) throw new Error("Invalid API response");
-        
-        // Send the response
-        return await m.reply(q.data);
-    } catch (error) {
-        console.error("GPT Error:", error);
-        return await m.reply("An error occurred while processing your request");
+        const chatId = m.jid;
+        let history = getMessages(chatId) || [];
+        history = history
+            .filter(msg => msg && msg.role && msg.content)
+            .map(msg => ({
+                role: msg.role,
+                content: String(msg.content)
+            }))
+        const messages = [
+            {
+                role: "system",
+                content: "You are Sparky, a helpful WhatsApp AI assistant."
+            },
+            ...history,
+            { role: "user", content: args }
+        ];
+        addMessage(chatId, "user", args);
+        const getResult = await askGroq(messages);
+        addMessage(chatId, "assistant", getResult);
+        return m.reply(getResult);
+    } catch (err) {
+        console.log("ERROR:", err.message);
+        return m.reply("AI broke ☠️");
     }
 });
-// Sparky({
-//     name: "apk",
-//     fromMe: isPublic,
-//     category: "downloader",
-//     desc: "Find and download APKs from Aptoide by app ID",
-// },
-// async ({
-//     m, client, args
-// }) => {
-//     let appId = args || m.quoted?.text;
-//     if (!appId) return await m.reply(lang.NEED_Q);
-
-//     try {
-//         await m.react('⬇️');
-
-//         const { result: appInfo } = await getJson(AP + "download/aptoide?id=" + appId);
-        
-//         await client.sendMessage(m.jid, {
-//             document: {
-//                 url: appInfo.link
-//             },
-//             fileName: appInfo.appname,
-//             caption: `App Name: ${appInfo.appname}\nDeveloper: ${appInfo.developer}`,
-//             mimetype: "application/vnd.android.package-archive"
-//         }, {
-//             quoted: m
-//         });
-//         await m.react('✅');
-//     } catch (error) {
-//         await m.react('❌');
-//         console.error(error);
-//     }
-// });
 
 Sparky(
     {

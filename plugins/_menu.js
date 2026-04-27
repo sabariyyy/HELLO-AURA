@@ -113,7 +113,7 @@ Sparky({
                             externalAdReply: {
                                 title: style(`Hey ${m.pushName}!`),
                                 body: style(`${config.BOT_INFO.split(";")[0]}`),
-                                sourceUrl: "https://sparky.biz.id",
+                                sourceUrl: "https://https://aswinsparky.qzz.io",
                                 mediaType: 1,
                                 showAdAttribution: true,
                                 renderLargerThumbnail: true,
@@ -134,8 +134,8 @@ Sparky({
                             externalAdReply: {
                                 title: style(`Hey ${m.pushName}!`),
                                 body: style(`${config.BOT_INFO.split(";")[0]}`),
-                                sourceUrl: "https://sparky.biz.id",
-                                mediaUrl: "https://sparky.biz.id",
+                                sourceUrl: "https://https://aswinsparky.qzz.io",
+                                mediaUrl: "https://https://aswinsparky.qzz.io",
                                 mediaType: 1,
                                 showAdAttribution: true,
                                 renderLargerThumbnail: false,
@@ -158,7 +158,7 @@ Sparky({
                             externalAdReply: {
                                 title: style(`Hey ${m.pushName}!`),
                                 body: style(`${config.BOT_INFO.split(";")[0]}`),
-                                sourceUrl: "https://sparky.biz.id",
+                                sourceUrl: "https://https://aswinsparky.qzz.io",
                                 mediaType: 1,
                                 showAdAttribution: true,
                                 renderLargerThumbnail: true,
